@@ -1,0 +1,7 @@
+.CustomTextMasters{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 65%;
+    background-color: aliceblue;
+}
