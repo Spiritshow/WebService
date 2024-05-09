@@ -1,0 +1,36 @@
+.CustomHeader{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(233, 213, 34);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.CustomHeader button{
+    height: 25px;
+    margin-top: 10px;
+}
+
+.Border{
+    margin: 5px;
+    border-right: thick solid #6a6a6a94;
+}
+
+.LinkButton{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50%;
+}
+
+.CustomHeader img{
+    border-radius: 15px;
+    padding-left: 2%;
+}
+
+.CustomLink{
+    padding-left: 4%;
+    padding-right: 5%;
+    margin-top: -10px;
+}

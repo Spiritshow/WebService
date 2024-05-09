@@ -6,3 +6,10 @@ export const useStoreDB = create((set, get) => ({
         set({data: dataDB})
     }
 }))
+
+export const useStoreComments = create((set,get) => ({
+    comments: [],
+    addComment: (newComment) => {
+        set({comments: [...get().comments, newComment]})
+    }
+}))

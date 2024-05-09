@@ -1,0 +1,58 @@
+.CustomTextMasters{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 65%;
+    background-color: aliceblue;
+    margin-left: 20%;
+}
+.CustomInfo{
+    display: flex;
+    flex-direction: row;
+}
+
+.CustomInfoImg{
+    height: 400px;
+    width: 300px;
+}
+
+.CustomInfoText{
+    display: flex;
+    flex-direction: column;
+}
+
+.CustomFIO{
+    display: flex;
+    flex-direction: row;
+}
+
+.LinkText{
+    display: flex;
+    flex-direction: row;
+}
+
+.LinkText a{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.ButtonLine{
+    display: flex;
+    flex-direction: row;
+}
+
+.ButtonLine button{
+    height: 50%;
+    margin-top: 25px;
+    margin-left: 60%;
+}
+
+.Comment{
+    border-radius: 25px solid #c2faffcd;
+    box-shadow: 10px;
+}
+
+.NotComments{
+    margin-left: 28%;
+    color: rgba(169, 170, 172, 0.686);
+}

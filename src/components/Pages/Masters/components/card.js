@@ -13,10 +13,10 @@ useEffect(() =>{
         <div className="CustomCard DerectionCard ColorCard">
             <img src="" alt=""></img>
             <div className="CustomTextCard">
-                <Link to={`/Masters/${props.ID}`}><h2>{props.SecondName} {props.FirstName}</h2></Link>
+                <Link to={`/Masters/${props.ID}`} state={props}><h2>{props.SecondName} {props.FirstName}</h2></Link>
                 <h4>Спецализация: {props.Specialization}</h4>
                 <div className="CustomQualiteCard">
-                    <h3>Рейтинг: {props.Qualite}</h3>
+                    <h3>Рейтинг: {props.Quality}</h3>
                 </div>
             </div>
         </div>
