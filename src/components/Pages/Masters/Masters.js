@@ -30,6 +30,7 @@ function Masters() {
           setPosts(ascendingFilms);
         }else{
           const descendingFilms = [...store].sort((a, b) => b.Quality - a.Quality);
+
           setPosts(descendingFilms);
         }
       }, [pos]) //[pos, posts]
@@ -38,20 +39,28 @@ function Masters() {
         event.target.value === '1' ? setPos('1') : setPos('2')
       }
 
+      const List = () =>{
+        if(!!posts)
+        return(posts.map(post =>(
+          <Card store={post}/>)))
+        else 
+        return(<h4>Загрузка...</h4>)
+      }
+
       console.log(posts)
     return(
         <div className="CustomTextMasters">
           <h2>Здесь вы можете выбрать мастера!</h2>
           <div>
             <select onChange={handleChange}>
-              <option value='1'>По возрастанию опыта работы</option>
-              <option value='2'>По убыванию опыта работы</option>
+              <option value='1'>По возрастанию рейтинга</option>
+              <option value='2'>По убыванию рейтинга</option>
             </select>
           </div>
-          {/* <List/> */}
-          {posts.map(post =>(
+          <List/>
+          {/* {posts.map(post =>(
             <Card store={post}/>
-          ))}
+          ))} */}
         </div>
     )
 }

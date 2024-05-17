@@ -4,6 +4,8 @@ import Layout from './Layout/Layout';
 import Masters from '../Pages/Masters/Masters';
 import Offering from '../Pages/Offering/Offering';
 import Master from '../Pages/Masters/components/Master/Master';
+import Sign_up from '../Pages/Login/Sign_up';
+import Login from '../Pages/Login/Login';
 
 const Router = () => {
     return(
@@ -14,7 +16,8 @@ const Router = () => {
                 <Route path='/Masters/:id' element={<Master/>}/>
                 {/* <Route path='/Offering' element={<Offering/>}/> */}
                 {/* <Route path='/Offering/:id' element={<Offering/>}/> */}
-                {/* <Route path='/Login' element={<Login/>}/> */}
+                <Route path='/Login' element={<Login/>}/>
+                <Route path='/Sign_up' element={<Sign_up/>}/>
             </Route>
         </Routes>
     </BrowserRouter>

@@ -1,15 +1,18 @@
 import React from "react";
 import logo from '../../../logo.svg'
 import './components/Header.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Header = () =>{
-    const LinkLogin = () => {
 
+    const navigate = useNavigate();
+
+    const LinkLogin = () => {
+        navigate('/Login');
     }
     const LinkSing_up = () => {
-
+        navigate('/Sign_up');
     }
 
     return(

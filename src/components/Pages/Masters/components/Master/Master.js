@@ -25,19 +25,21 @@ const Master = () => {
     }
 
     const hChange = (e) => {
-        setQuality(e.target.value)
+        setQuality(e)
     }
 
     const send = () => {
-        addComment(value)
+        //addComment(comments,[...{value}]) пример какой должна быть строка кода 
+        addComment([...[],value])
         // addData(data[prop.ID-1].Quality = (prop.Quality + quality)/2);
         // console.log((prop.Quality + quality)/2)
     }
     console.log(comments)
     const BoxComment = () => {
-        if(!!comments)
-            comments.map(comment=>(
-        <h3 className="Comment">  {comment}</h3>))
+        if(!!comments[0])
+            comments.map(comment => {
+        console.log(comment);
+        return(<h4 className="Commenth"> Unknow: {comment}</h4>)})
         else
         return(<h4 className="NotComments"> Комментариев пока нет. Вы можите быть первым.</h4>)
     }
