@@ -13,3 +13,10 @@ export const useStoreComments = create((set,get) => ({
         set({comments: [...get().comments, newComment]})
     }
 }))
+
+export const useLoginDB = create((set,get) => ({
+    user: null,
+    addUser: (userDB) => {
+        set({user: userDB})
+    }
+}))

@@ -6,6 +6,7 @@ import Offering from '../Pages/Offering/Offering';
 import Master from '../Pages/Masters/components/Master/Master';
 import Sign_up from '../Pages/Login/Sign_up';
 import Login from '../Pages/Login/Login';
+import Offer from '../Pages/Offering/components/Offer/Offer';
 
 const Router = () => {
     return(
@@ -14,8 +15,8 @@ const Router = () => {
             <Route path='/' element={<Layout/>}> 
                 <Route path='/' element={<Masters/>}/>
                 <Route path='/Masters/:id' element={<Master/>}/>
-                {/* <Route path='/Offering' element={<Offering/>}/> */}
-                {/* <Route path='/Offering/:id' element={<Offering/>}/> */}
+                <Route path='/Offering' element={<Offering/>}/>
+                <Route path='/Offering/:id' element={<Offer/>}/>
                 <Route path='/Login' element={<Login/>}/>
                 <Route path='/Sign_up' element={<Sign_up/>}/>
             </Route>

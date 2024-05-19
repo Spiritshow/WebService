@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useStoreDB } from "../../Store/store";
 import Card from "./components/card";
-import './components/Masters.css'
+import './components/Masters.css';
 
 function Masters() {
     const store = useStoreDB((state) => state.data)
@@ -58,9 +58,6 @@ function Masters() {
             </select>
           </div>
           <List/>
-          {/* {posts.map(post =>(
-            <Card store={post}/>
-          ))} */}
         </div>
     )
 }

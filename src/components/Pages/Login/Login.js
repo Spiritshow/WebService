@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import "./Login.css"
+import { useLoginDB } from "../../Store/store";
+import { useNavigate } from "react-router-dom";
 
 const Login = () =>{
+
+    const navigate = useNavigate();
+    const user = useLoginDB((state) => state.user);
+    const addUser = useLoginDB((state) => state.addUser)
 
     const [login, setLogin] = useState("");
     const hChangeLogin = (e) =>{
@@ -13,7 +20,18 @@ const Login = () =>{
         setPassword(e.target.value);
     }
 
-    const log = () =>{
+    const log = async () =>{
+        const response = await axios.post('http://localhost:3001/login',{
+            login: login,
+            password: password,
+        });
+    
+        addUser(response.data);
+        if(response.data.user === 'Master'){
+            navigate('/Offering');
+        }else if(response.data.user === 'Client'){
+            navigate('/');
+        }
         
     }
 
