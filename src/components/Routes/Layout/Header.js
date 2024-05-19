@@ -9,6 +9,7 @@ const Header = () =>{
     
     const navigate = useNavigate();
     const user = useLoginDB((state) => state.user);
+    const addUser = useLoginDB((state) => state.addUser)
 
     const Enter = () => {
 
@@ -28,12 +29,32 @@ const Header = () =>{
         )
     }
 
+    const Edit = () => {
+
+        const ButtonEdit = () => {
+            
+        }
+        const ButtonExit = () => {
+            addUser(null);
+            navigate('/Offering');
+        }
+
+        return(
+            <div className="LinkButton">
+                <button onClick={ButtonEdit}>Редоктирование</button>
+                <div className="Border"></div>
+                <button onClick={ButtonExit}>Выход</button>
+            </div>
+        )
+    }
+
     return(
     <header className="CustomHeader">
         <img src={logo} alt="logo"/>
         <Link to={"/"} className="CustomLink"><h4>Мастера</h4></Link>
         <Link to={"/Offering"} className="CustomLink"><h4>Предложения</h4></Link>
         {!user && <Enter/>}
+        {!!user && <Edit/>}
     </header>
     )
 } 
