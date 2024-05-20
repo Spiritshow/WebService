@@ -22,9 +22,9 @@ function Masters() {
         };
     
         fetchData();
-      }, []);
+    }, []);
 
-      useEffect(() => {
+    useEffect(() => {
         if(pos === '1'){
           const ascendingFilms = [...store].sort((a, b) => a.Quality - b.Quality);
           setPosts(ascendingFilms);
@@ -33,19 +33,19 @@ function Masters() {
 
           setPosts(descendingFilms);
         }
-      }, [pos]) //[pos, posts]
+    }, [pos]) //[pos, posts]
 
-      const handleChange = (event) =>  {
-        event.target.value === '1' ? setPos('1') : setPos('2')
-      }
+    const handleChange = (event) =>  {
+      event.target.value === '1' ? setPos('1') : setPos('2')
+    }
 
-      const List = () =>{
-        if(!!posts)
-        return(posts.map(post =>(
-          <Card store={post}/>)))
-        else 
-        return(<h4>Загрузка...</h4>)
-      }
+    const List = () =>{
+      if(!!posts)
+      return(posts.map(post =>(
+        <Card store={post}/>)))
+      else 
+      return(<h4>Загрузка...</h4>)
+    }
 
       console.log(posts)
     return(

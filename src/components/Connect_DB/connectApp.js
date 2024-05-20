@@ -99,7 +99,35 @@ app.post('/login', (req,res) => {
     }
     }
 });
-      
+
+app.post('/dataMaster', (req,res) => {
+  let id = req.body.id;
+  const query = 'SELECT * FROM `Masters` WHERE ID = ?';
+  conn.query(query, id, (error, results) => {
+    if (error) {
+      console.error('Ошибка выполнения запроса:', error);
+      res.status(500).send('Ошибка сервера');
+      return;
+    }
+    console.log("тест ",results)
+    res.json(results);
+  });
+});
+
+app.post('/EditMaster', (req,res) => {
+  let data = [req.body.firstName, req.body.secondName, req.body.patronymic, req.body.phoneNumber, req.body.description, req.body.specializations, req.body.photo.file, req.body.linkVK, req.body.id]
+  const query = `UPDATE Masters SET SecondName = ?, FirstName = ?, Patronymic = ?, PhoneNumber = ?, Description = ?, Specialization = ?, Images = ?, LinkVK = ? WHERE ID = ?`;
+  conn.query(query, data, (error, results) => {
+    if (error) {
+      console.error('Ошибка выполнения запроса:', error);
+      res.status(500).send('Ошибка сервера');
+      return;
+    }
+    console.log("тест ",results)
+    res.json(results);
+  });
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);

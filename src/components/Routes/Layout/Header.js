@@ -32,7 +32,11 @@ const Header = () =>{
     const Edit = () => {
 
         const ButtonEdit = () => {
-            
+            if(user.user === "Master") {
+                navigate('/EditMaster')
+            }else{
+
+            }
         }
         const ButtonExit = () => {
             addUser(null);
