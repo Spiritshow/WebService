@@ -20,3 +20,10 @@ export const useLoginDB = create((set,get) => ({
         set({user: userDB})
     }
 }))
+
+export const useClass = create((set,get) => ({
+    class: false,
+    addClass: (newClass) => {
+        set({class: newClass})
+    }
+}))
