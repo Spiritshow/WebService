@@ -3,14 +3,21 @@ import axios from 'axios';
 import "./Sign_up.css";
 
 const Sign_up = () => {
-    var user = new Object();
-    user.id = null;
-    user.login = "";
-    user.password = "";
-    user.isWorker=false;
-    user.idClient = null;
+    //передалать
+    const [idClient, setIdClient] = useState();
+    const SignClient = async() => {
+        const response = await axios.post('http://localhost:3001/dataClient',{
+            id: null,
+            login: number,
+            password: password,
+            isWorker: togglerMaster,
+            idClient: idClient,
+        });
 
-    const Sign = async () =>{
+
+    };
+
+    const SignMaster = async () =>{
 
         //проблема с фотографиями надо пофиксить! !!!
         const response = await axios.post('http://localhost:3001/data',{
@@ -22,12 +29,26 @@ const Sign_up = () => {
             linkVK: linkVK,
             description: description,
             specializations: textSpecializations,
-            photo: selectedFile,
+            photo: photo,
             quality: "5"
         });
-        console.log(textSpecializations)
+        console.log(response)
         console.log(photo)
-        console.log(selectedFile)
+        setIdClient(response);
+    }
+
+    const Sign = () => {
+        if(togglerMaster){
+            SignMaster();
+        }else{
+            //SignOfferClient()
+        }
+        SignClient();
+        if(togglerMaster){
+            //navigate(MasterPage)
+        }else{
+            //navigate(Offering)
+        }
     }
 
     const [firstName, setFirstName] = useState("")
@@ -109,13 +130,19 @@ const Sign_up = () => {
             return;
         }
 
+        const newFileName = encodeURI(selectedFile.name);
+        setPhoto(`/uploads/${newFileName}`);
+
         const formData = new FormData();
         formData.append('file', selectedFile);
-        //закидываем formdata в photo для передачи в объект передаваемый на api сервер
-        setPhoto(formData);
+        
+        const res = await fetch('http://localhost:3001/update', {
+            method: 'POST',
+            body: formData
+        });   
+        const data = await res.json();
 
-
-        console.log(formData);
+        console.log(data);
         console.log("File ready for upload:", selectedFile);
     };
 
@@ -186,7 +213,7 @@ const Sign_up = () => {
                 </div>
 
                 {/* {togglerMaster && <Sign_Master/>} */}
-                <div>
+                {togglerMaster && <div>
                 <h3>Описание: </h3>
                 <textarea onChange={handleDescription}></textarea>
                     <h3>Специализации:</h3>
@@ -227,7 +254,7 @@ const Sign_up = () => {
                         {previewUrl && <img src={previewUrl} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />}
                         {selectedFile && <button onClick={fileUploadHandler}>Upload</button>}
                     </div>
-                </div>
+                </div>}
                 {/* end */}
 
                 <button className="CustomButton" onClick={Sign}>Зарегистрировать</button>

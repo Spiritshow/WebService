@@ -5,10 +5,10 @@ import { useLoginDB } from "../../../Store/store";
 import { useNavigate } from "react-router-dom";
 
 const EditMaster = () => {
-
+    const [photo, setPhoto] = useState();
     const navigate = useNavigate();
     const Master = useLoginDB((state) => state.user)
-
+    
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -21,9 +21,6 @@ const EditMaster = () => {
             setLinkVK(response.data[0].LinkVK);
             setDescription(response.data[0].Description);
             setTextSpecializations(response.data[0].Specialization);
-            const formData = new FormData();
-            formData.append('file', response.data[0].Images);
-            setPhoto(formData);
           } catch (error) {
             console.error('Ошибка получения данных:', error);
           }
@@ -33,7 +30,7 @@ const EditMaster = () => {
     }, []);
 
     const Edit = async () =>{
-        //проблема с фотографиями надо пофиксить! !!!
+        //проблема с фотографиями надо пофиксить! !!!)
         const response = await axios.post('http://localhost:3001/EditMaster',{
             id: Master.id,
             firstName: firstName,
@@ -46,9 +43,10 @@ const EditMaster = () => {
             photo: photo,
             quality: "5"
         });
-        console.log(textSpecializations)
-        console.log(photo)
-        console.log(response.data[0])
+        console.log(response)
+
+
+
         const resp = await axios.post('http://localhost:3001/dataMaster',{id: Master.id});
         navigate(`/Masters/${Master.id}`, {state: resp.data[0]});
     }
@@ -124,21 +122,25 @@ const EditMaster = () => {
         }
     };
 
-    const [photo, setPhoto] = useState();
-
     const fileUploadHandler = async () => {
         if (!selectedFile) {
             console.log("No file selected!");
             return;
         }
+        //
+        const newFileName = encodeURI(selectedFile.name);
+        setPhoto(`/uploads/${newFileName}`)
 
         const formData = new FormData();
         formData.append('file', selectedFile);
-        //закидываем formdata в photo для передачи в объект передаваемый на api сервер
-        setPhoto(formData);
 
+        const res = await fetch('http://localhost:3001/update', {
+            method: 'POST',
+            body: formData
+        });   
+        const data = await res.json();
 
-        console.log(formData);
+        console.log(data);
         console.log("File ready for upload:", selectedFile);
     };
 

@@ -11,7 +11,7 @@ const Offer = () => {
     return(
         <div className="CustomTextMasters">
             <div className="CustomInfo">
-                <img src={logo} alt="None" className="CustomInfoImg"/>
+                <img src={prop.Images} alt="None" className="CustomInfoImg"/>
                 <div className="CustomInfoText">
                     <div>
                         <h2>{prop.Header}</h2>

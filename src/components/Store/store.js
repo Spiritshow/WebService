@@ -7,6 +7,13 @@ export const useStoreDB = create((set, get) => ({
     }
 }))
 
+export const useOfferClient = create((set, get) => ({
+    data: [],
+    addData: (dataDB) => {
+        set({data: dataDB})
+    }
+}))
+
 export const useStoreComments = create((set,get) => ({
     comments: [],
     addComment: (newComment) => {
