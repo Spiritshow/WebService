@@ -47,7 +47,6 @@ function Masters() {
       return(<h4>Загрузка...</h4>)
     }
 
-      console.log(posts)
     return(
         <div className="CustomTextMasters">
           <h2>Здесь вы можете выбрать мастера!</h2>

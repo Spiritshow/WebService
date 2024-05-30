@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import "./Sign_up.css";
+import { useNavigate } from "react-router-dom";
+import { useLoginDB } from "../../Store/store";
 
 const Sign_up = () => {
-    //передалать
-    const [idClient, setIdClient] = useState();
-    const SignClient = async() => {
-        const response = await axios.post('http://localhost:3001/dataClient',{
-            id: null,
-            login: number,
-            password: password,
-            isWorker: togglerMaster,
-            idClient: idClient,
-        });
 
+    const addUser = useLoginDB((state) => state.addUser)
+    const user = useLoginDB((state) => state.user);
 
-    };
-
+    const navigate = useNavigate();
     const SignMaster = async () =>{
-
-        //проблема с фотографиями надо пофиксить! !!!
         const response = await axios.post('http://localhost:3001/data',{
             id: null,
             firstName: firstName,
@@ -30,24 +21,42 @@ const Sign_up = () => {
             description: description,
             specializations: textSpecializations,
             photo: photo,
-            quality: "5"
+            quality: "5",
+            login: number,
+            password: password,
         });
-        console.log(response)
-        console.log(photo)
-        setIdClient(response);
+        
+        addUser({id: response.data[0].ID ,user: "Master"})
     }
+
+    const SignClient = async () => {
+        const response = await axios.post('http://localhost:3001/dataClient',{
+            id: null,
+            firstName: firstName,
+            secondName: secondName,
+            patronymic: patronymic,
+            phoneNumber: number,
+            quality: "5",
+            login: number,
+            password: password,
+        });
+        
+        addUser({id: response.data[0].ID ,user: "Client"})
+    } 
+
+    const linkMaster = async () => {
+        const resp = await axios.post('http://localhost:3001/dataMaster',{id: user.id});
+        navigate(`/Masters/${user.id}`, {state: resp.data[0]});
+    }
+
 
     const Sign = () => {
         if(togglerMaster){
             SignMaster();
+            linkMaster();
         }else{
-            //SignOfferClient()
-        }
-        SignClient();
-        if(togglerMaster){
-            //navigate(MasterPage)
-        }else{
-            //navigate(Offering)
+            SignClient()
+            navigate('/')
         }
     }
 
@@ -147,54 +156,6 @@ const Sign_up = () => {
     };
 
     const [togglerMaster, setTogglerMaster] = useState(false)
-
-    const Sign_Master = () => {
-
-        return(
-            <div>
-                <h3>Описание: </h3>
-                <textarea onChange={handleDescription}></textarea>
-                    <h3>Специализации:</h3>
-                    <div>
-                        <input type="checkbox" id="painter" name="painter" onClick={checkMaster} />
-                        <label for="painter">Маляр</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="electrician" name="electrician" onClick={checkMaster} />
-                        <label for="electrician">Электрик</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="plumber" name="plumber" onClick={checkMaster} />
-                        <label for="plumber">Сантехник</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="installer" name="installer" onClick={checkMaster} />
-                        <label for="installer">Мотажник</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="tiler" name="tiler" onClick={checkMaster} />
-                        <label for="tiler">Плиточник</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="ceilings" name="ceilings" onClick={checkMaster} />
-                        <label for="ceilings">Натежные потолки</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="doors" name="doors" onClick={checkMaster} />
-                        <label for="doors">Двери</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="decoration" name="decoration" onClick={checkMaster} />
-                        <label for="decoration">Отделка стен</label>
-                    </div>
-                    <div>
-                        <input type="file" onChange={fileSelectedHandler} accept="image/*" />
-                        {previewUrl && <img src={previewUrl} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />}
-                        {selectedFile && <button onClick={fileUploadHandler}>Upload</button>}
-                    </div>
-                </div>
-        )
-    }
 
     return(
         <div className="CustomBox">
