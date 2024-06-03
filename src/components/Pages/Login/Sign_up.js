@@ -7,7 +7,7 @@ import { useLoginDB } from "../../Store/store";
 const Sign_up = () => {
 
     const addUser = useLoginDB((state) => state.addUser)
-    const user = useLoginDB((state) => state.user);
+    //const user = useLoginDB((state) => state.user);
 
     const navigate = useNavigate();
     const SignMaster = async () =>{
@@ -27,6 +27,9 @@ const Sign_up = () => {
         });
         
         addUser({id: response.data[0].ID ,user: "Master"})
+        const resp = await axios.post('http://localhost:3001/dataMaster',{id: response.data[0].ID});
+        navigate(`/Masters/${response.data[0].ID}`, {state: resp.data[0]});
+        
     }
 
     const SignClient = async () => {
@@ -44,16 +47,13 @@ const Sign_up = () => {
         addUser({id: response.data[0].ID ,user: "Client"})
     } 
 
-    const linkMaster = async () => {
-        const resp = await axios.post('http://localhost:3001/dataMaster',{id: user.id});
-        navigate(`/Masters/${user.id}`, {state: resp.data[0]});
-    }
+
 
 
     const Sign = () => {
         if(togglerMaster){
             SignMaster();
-            linkMaster();
+
         }else{
             SignClient()
             navigate('/')
@@ -179,35 +179,35 @@ const Sign_up = () => {
                 <textarea onChange={handleDescription}></textarea>
                     <h3>Специализации:</h3>
                     <div>
-                        <input type="checkbox" id="painter" name="painter" onClick={checkMaster} />
+                        <input type="checkbox" id="painter" name="Маляр" onClick={checkMaster} />
                         <label for="painter">Маляр</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="electrician" name="electrician" onClick={checkMaster} />
+                        <input type="checkbox" id="electrician" name="Электрик" onClick={checkMaster} />
                         <label for="electrician">Электрик</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="plumber" name="plumber" onClick={checkMaster} />
+                        <input type="checkbox" id="plumber" name="Сантехник" onClick={checkMaster} />
                         <label for="plumber">Сантехник</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="installer" name="installer" onClick={checkMaster} />
+                        <input type="checkbox" id="installer" name="Монтажник" onClick={checkMaster} />
                         <label for="installer">Мотажник</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="tiler" name="tiler" onClick={checkMaster} />
+                        <input type="checkbox" id="tiler" name="Плиточник" onClick={checkMaster} />
                         <label for="tiler">Плиточник</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="ceilings" name="ceilings" onClick={checkMaster} />
+                        <input type="checkbox" id="ceilings" name="Натяжные потолки" onClick={checkMaster} />
                         <label for="ceilings">Натежные потолки</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="doors" name="doors" onClick={checkMaster} />
+                        <input type="checkbox" id="doors" name="Двери" onClick={checkMaster} />
                         <label for="doors">Двери</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="decoration" name="decoration" onClick={checkMaster} />
+                        <input type="checkbox" id="decoration" name="Отделка стен" onClick={checkMaster} />
                         <label for="decoration">Отделка стен</label>
                     </div>
                     <div>

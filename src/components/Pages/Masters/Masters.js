@@ -53,7 +53,7 @@ function Masters() {
           <div>
             <select onChange={handleChange}>
               <option value='1'>По возрастанию рейтинга</option>
-              <option value='2'>По убыванию рейтинга</option>
+              <option value='2'>По убываниЫю рейтинга</option>
             </select>
           </div>
           <List/>

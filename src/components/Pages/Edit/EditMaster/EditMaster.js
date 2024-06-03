@@ -21,6 +21,7 @@ const EditMaster = () => {
             setLinkVK(response.data[0].LinkVK);
             setDescription(response.data[0].Description);
             setTextSpecializations(response.data[0].Specialization);
+            setPhoto(response.data[0].Images)
           } catch (error) {
             console.error('Ошибка получения данных:', error);
           }
@@ -82,11 +83,13 @@ const EditMaster = () => {
             const index = specializations.findIndex(specialization => specialization === e.target.name);
             specializations.splice(index, 1)
             setSpecializations([...[],...specializations]);
+            
         }
         textSpec();
     }
     const [textSpecializations, setTextSpecializations] = useState()
     const textSpec = () =>{
+        setTextSpecializations("")
         if(!!specializations)specializations.map(
             specialization => setTextSpecializations(textSpecializations+specialization+"; ")
         )
@@ -160,35 +163,35 @@ const EditMaster = () => {
                 <textarea onChange={handleDescription}>{description}</textarea>
                     <h3>Специализации:</h3>
                     <div>
-                        <input type="checkbox" id="painter" name="painter" onClick={checkMaster} />
+                        <input type="checkbox" id="painter" name="Маляр" onClick={checkMaster} />
                         <label for="painter">Маляр</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="electrician" name="electrician" onClick={checkMaster} />
+                        <input type="checkbox" id="electrician" name="Электрик" onClick={checkMaster} />
                         <label for="electrician">Электрик</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="plumber" name="plumber" onClick={checkMaster} />
+                        <input type="checkbox" id="plumber" name="Сантехник" onClick={checkMaster} />
                         <label for="plumber">Сантехник</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="installer" name="installer" onClick={checkMaster} />
+                        <input type="checkbox" id="installer" name="Монтажник" onClick={checkMaster} />
                         <label for="installer">Мотажник</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="tiler" name="tiler" onClick={checkMaster} />
+                        <input type="checkbox" id="tiler" name="Плиточник" onClick={checkMaster} />
                         <label for="tiler">Плиточник</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="ceilings" name="ceilings" onClick={checkMaster} />
+                        <input type="checkbox" id="ceilings" name="Натяжные потолки" onClick={checkMaster} />
                         <label for="ceilings">Натежные потолки</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="doors" name="doors" onClick={checkMaster} />
+                        <input type="checkbox" id="doors" name="Двери" onClick={checkMaster} />
                         <label for="doors">Двери</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="decoration" name="decoration" onClick={checkMaster} />
+                        <input type="checkbox" id="decoration" name="Отделка стен" onClick={checkMaster} />
                         <label for="decoration">Отделка стен</label>
                     </div>
                     <div>

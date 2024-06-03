@@ -61,7 +61,7 @@ const Sidebar = () => {
         return(
             <div>
                 <hr/>
-                <h3>Добавить предложение</h3>
+                <Link to={`/AddOffer`} state={user.id}><h3>Добавить предложение</h3></Link>
                 <hr/>
             </div>
         )
@@ -71,7 +71,7 @@ const Sidebar = () => {
         return(
             <div>
                 <hr/>
-                <h3>Редактировать свои данные</h3>
+                <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley'><h3>Редактировать свои данные</h3></a>
                 <hr/>
             </div>
         )

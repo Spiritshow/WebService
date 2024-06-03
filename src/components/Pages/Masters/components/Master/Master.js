@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Master.css";
-import logo from "../../../../../logo.svg";
-import { useStoreComments, useStoreDB } from "../../../../Store/store";
+
+//import { useStoreComments, useStoreDB } from "../../../../Store/store";
 
 const Master = () => {
 
@@ -11,8 +11,8 @@ const Master = () => {
 
     const [comments, addComment] = useState([])
 
-    const data = useStoreDB((state) => state.data);
-    const addData = useStoreDB((state) => state.addData);
+    //const data = useStoreDB((state) => state.data);
+    //const addData = useStoreDB((state) => state.addData);
 
     const location = useLocation();
     const prop = location.state;
@@ -34,7 +34,7 @@ const Master = () => {
         // addData(data[prop.ID-1].Quality = (prop.Quality + quality)/2);
         // console.log((prop.Quality + quality)/2)
     }
-    console.log(comments)
+    //console.log(comments)
     const BoxComment = () => {
         if(!!comments[0])
             comments.map(comment => {

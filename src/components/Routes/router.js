@@ -8,6 +8,7 @@ import Sign_up from '../Pages/Login/Sign_up';
 import Login from '../Pages/Login/Login';
 import Offer from '../Pages/Offering/components/Offer/Offer';
 import EditMaster from '../Pages/Edit/EditMaster/EditMaster';
+import AddOffer from '../Pages/Offering/components/AddOffer/AddOffer';
 
 const Router = () => {
     return(
@@ -21,6 +22,7 @@ const Router = () => {
                 <Route path='/Login' element={<Login/>}/>
                 <Route path='/Sign_up' element={<Sign_up/>}/>
                 <Route path='/EditMaster' element={<EditMaster/>}/>
+                <Route path='/AddOffer' element={<AddOffer/>}/>
             </Route>
         </Routes>
     </BrowserRouter>
